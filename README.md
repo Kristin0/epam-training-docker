@@ -6,4 +6,4 @@
     Define network in docker-compose file explicitly
     Use volumes to persist WordPress and MySql data
     Use health checks for WordPress and MySql services to find out when the services are healthy
-    The solution should be fully automated, `docker-compose up --build`  should be enough to run configured WordPress
+    The solution should be fully automated, ``` docker-compose up --build ```  should be enough to run configured WordPress
