@@ -1,0 +1,39 @@
+version: "3.9"
+services: 
+  web: 
+    image: wordpress:latest
+    env_file:
+      - wordpress.env
+    ports:
+      - 80:80
+    networks:
+      - my_net
+    depends_on:
+       db:
+         condition: service_healthy
+    restart: always
+  
+  db:
+    image: mysql:5.7
+    env_file:
+      - mysql.env
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - my_net
+    restart: always
+    healthcheck:
+            test: "service mysql status"
+            interval: 10s
+            timeout: 10s
+            retries: 5
+            start_period: 10s
+
+volumes:
+     db: {}
+
+networks:
+    my_net:
+      driver: bridge
+
+
